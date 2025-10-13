@@ -25,26 +25,15 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	frame_camera_rotation()
+	var direction := get_movement_direction()
+	rig.update_animation_tree(direction)
+	handle_idle_physics_frame(direction, delta)
+	handle_slashing_physics_frame(delta)
 	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	var direction := get_movement_direction()
-	rig.update_animation_tree(direction)
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-		look_toward_direction(direction, delta)
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
-	handle_slashing_physics_frame(delta)
+		
 	move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -91,6 +80,17 @@ func slash_attack() -> void:
 	_attack_direction = get_movement_direction()
 	if _attack_direction.is_zero_approx():
 		_attack_direction = rig.global_basis * Vector3(0, 0, 1)
+
+func handle_idle_physics_frame(direction: Vector3, delta: float) -> void:
+	if not rig.is_idle():
+		return
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+		look_toward_direction(direction, delta)
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
 func handle_slashing_physics_frame(delta: float) -> void:
 	if not rig.is_slashing():
