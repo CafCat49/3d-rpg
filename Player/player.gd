@@ -7,8 +7,9 @@ const JUMP_VELOCITY = 4.5
 var _look := Vector2.ZERO
 
 @export var mouse_sensitivity: float = 0.00075
-@export var min_boundary: float = -60
-@export var max_boundary: float = 10
+@export var min_boundary: float = -60.0
+@export var max_boundary: float = 10.0
+@export var animation_decay: float = 20.0
 
 @onready var horizontal_pivot: Node3D = $HorizontalPivot
 @onready var vertical_pivot: Node3D = $HorizontalPivot/VerticalPivot
@@ -70,4 +71,7 @@ func look_toward_direction(direction: Vector3, delta: float) -> void:
 		true
 	)
 	
-	rig_pivot.global_transform.basis = target_transform.basis
+	rig_pivot.global_transform = rig_pivot.global_transform.interpolate_with(
+		target_transform,
+		1.0 - exp(-animation_decay * delta)
+	)
