@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch1vyjkdj16m8"]
+[gd_scene load_steps=8 format=3 uid="uid://ch1vyjkdj16m8"]
 
+[ext_resource type="Script" uid="uid://d352c24t6ipla" path="res://Player/rig.gd" id="1_wer68"]
 [ext_resource type="PackedScene" uid="uid://d2towiktvffj8" path="res://Assets/3D_Assets/Character/CharacterRig.glb" id="1_ydo8n"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ydo8n"]
@@ -25,6 +26,7 @@ transitions = ["Start", "MoveSpace", SubResource("AnimationNodeStateMachineTrans
 graph_offset = Vector2(-231, -24)
 
 [node name="Rig" type="Node3D"]
+script = ExtResource("1_wer68")
 
 [node name="CharacterRig" parent="." instance=ExtResource("1_ydo8n")]
 
@@ -36,9 +38,6 @@ visible = false
 
 [node name="Villager_02" parent="CharacterRig/GameRig/Skeleton3D" index="3"]
 visible = false
-
-[node name="AnimationPlayer" parent="CharacterRig" index="1"]
-autoplay = "Run"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../CharacterRig")
