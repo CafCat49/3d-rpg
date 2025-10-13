@@ -1,6 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://ch1vyjkdj16m8"]
+[gd_scene load_steps=7 format=3 uid="uid://ch1vyjkdj16m8"]
 
 [ext_resource type="PackedScene" uid="uid://d2towiktvffj8" path="res://Assets/3D_Assets/Character/CharacterRig.glb" id="1_ydo8n"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ydo8n"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wer68"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_ojd8b"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ydo8n")
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_wer68")
+blend_point_1/pos = -1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_awthv"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_32kt2"]
+states/MoveSpace/node = SubResource("AnimationNodeBlendSpace1D_ojd8b")
+states/MoveSpace/position = Vector2(463, 91)
+states/Start/position = Vector2(206, 100)
+transitions = ["Start", "MoveSpace", SubResource("AnimationNodeStateMachineTransition_awthv")]
+graph_offset = Vector2(-231, -24)
 
 [node name="Rig" type="Node3D"]
 
@@ -14,5 +36,14 @@ visible = false
 
 [node name="Villager_02" parent="CharacterRig/GameRig/Skeleton3D" index="3"]
 visible = false
+
+[node name="AnimationPlayer" parent="CharacterRig" index="1"]
+autoplay = "Run"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../CharacterRig")
+tree_root = SubResource("AnimationNodeStateMachine_32kt2")
+anim_player = NodePath("../CharacterRig/AnimationPlayer")
+parameters/MoveSpace/blend_position = 0.0
 
 [editable path="CharacterRig"]
