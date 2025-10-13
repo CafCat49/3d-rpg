@@ -84,10 +84,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.810005, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.7150393)
 
 [node name="Topiary_Tree_Vege_012" parent="Vegetation" instance=ExtResource("4_t80w2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -16)
 
 [node name="Topiary_Tree_Vege_013" parent="Vegetation" instance=ExtResource("4_t80w2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.008989722, -16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.008989722, -16)
 
 [node name="Topiary_Tree_Vege_014" parent="Vegetation" instance=ExtResource("4_t80w2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
