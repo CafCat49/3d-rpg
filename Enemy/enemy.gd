@@ -29,6 +29,5 @@ func _on_health_component_defeat() -> void:
 	collision_shape_3d.disabled = true
 	set_physics_process(false)
 
-
 func _on_rig_heavy_attack() -> void:
 	print("Heavy attack signal")
