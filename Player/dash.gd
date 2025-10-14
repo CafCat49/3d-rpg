@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var player: Player
-@export var dash_speed: float = 5.0
+@export var speed_multiplier := 3.0
 
 @onready var timer: Timer = $Timer
 
@@ -24,7 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if direction.is_zero_approx():
 		return
-	player.velocity = direction * player.SPEED * dash_speed
+	player.velocity = direction * player.SPEED * speed_multiplier
 	time_remaining -= delta
 	if time_remaining <= 0:
 		direction = Vector3.ZERO
