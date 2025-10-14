@@ -18,3 +18,8 @@ func update_max_health(max_hp_in: float) -> void:
 	
 func take_damage(damage_in: float) -> void:
 	current_health -= damage_in
+
+func is_alive() -> bool:
+	if current_health == 0:
+		return false
+	return true
