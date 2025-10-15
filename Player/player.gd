@@ -1,7 +1,6 @@
 extends CharacterBody3D
 class_name Player
 
-const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const DECAY := 8.0
 
@@ -56,6 +55,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			slash_attack()
 		if event.is_action_pressed("right_click"):
 			heavy_attack()
+	if event.is_action_pressed("debug_gain_xp"):
+		stats.xp += 10000
+		print(stats.level)
 
 func get_movement_direction() -> Vector3:
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -99,15 +101,16 @@ func heavy_attack() -> void:
 func handle_idle_physics_frame(direction: Vector3, delta: float) -> void:
 	if not rig.is_idle() and not rig.is_dashing():
 		return
+	var speed = stats.get_base_speed()
 	velocity.x = exponential_decay(
 		velocity.x, 
-		direction.x * SPEED, 
+		direction.x * speed, 
 		DECAY, 
 		delta
 		)
 	velocity.z = exponential_decay(
 		velocity.z, 
-		direction.z * SPEED, 
+		direction.z * speed, 
 		DECAY, 
 		delta
 		)

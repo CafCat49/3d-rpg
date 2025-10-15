@@ -28,7 +28,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if direction.is_zero_approx():
 		return
-	player.velocity = direction * player.SPEED * speed_multiplier
+	var player_speed = player.stats.get_base_speed()
+	player.velocity = direction * player_speed * speed_multiplier
 	time_remaining -= delta
 	if time_remaining <= 0:
 		direction = Vector3.ZERO
