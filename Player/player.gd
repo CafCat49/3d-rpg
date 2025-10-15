@@ -30,6 +30,7 @@ var _attack_direction := Vector3.ZERO
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	health_component.update_max_health(30.0)
+	print(stats.get_base_speed())
 
 func _physics_process(delta: float) -> void:
 	frame_camera_rotation()
