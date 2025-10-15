@@ -18,6 +18,9 @@ class Ability:
 		
 	func get_modifier() -> float:
 		return percentile_lerp(min_modifier, max_modifier)
+		
+	func increase() -> void:
+		ability_score += randi_range(2, 5)
 
 var level := 1
 var xp := 0
@@ -33,3 +36,22 @@ var agility := Ability.new(0.05, 0.25)
 
 func get_base_speed() -> float:
 	return speed.get_modifier()
+
+func get_damage_modifier() -> float:
+	return strength.get_modifier()
+	
+func get_crit_chance() -> float:
+	return agility.get_modifier()
+
+func level_up() -> void:
+	level += 1
+	strength.increase()
+	agility.increase()
+	speed.increase()
+	endurance.increase()
+	printt(
+		strength.ability_score, 
+		agility.ability_score, 
+		speed.ability_score, 
+		endurance.ability_score
+		)

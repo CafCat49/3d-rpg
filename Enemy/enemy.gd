@@ -8,6 +8,7 @@ class_name Enemy
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var player_detector: ShapeCast3D = $RigPivot/PlayerDetector
 @onready var area_attack: ShapeCast3D = $RigPivot/AreaAttack
+@onready var player: Player = get_tree().get_first_node_in_group("Player")
 
 func _ready() -> void:
 	rig.set_active_mesh(
@@ -15,7 +16,7 @@ func _ready() -> void:
 	)
 	health_component.update_max_health(max_health)
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if rig.is_idle():
 		check_for_attacks()
 		
@@ -26,6 +27,7 @@ func check_for_attacks() -> void:
 			rig.travel("Overhead")
 
 func _on_health_component_defeat() -> void:
+	player.stats.level_up()
 	rig.travel("Defeat")
 	collision_shape_3d.disabled = true
 	set_physics_process(false)
