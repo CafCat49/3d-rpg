@@ -124,7 +124,10 @@ func handle_slashing_physics_frame(delta: float) -> void:
 	velocity.x = _attack_direction.x * attack_move_speed
 	velocity.z = _attack_direction.z * attack_move_speed
 	look_toward_direction(_attack_direction, delta)
-	attack_cast.deal_damage(10.0 + stats.get_damage_modifier())
+	attack_cast.deal_damage(
+		10.0 + stats.get_damage_modifier(), 
+		stats.get_crit_chance()
+		)
 	
 func handle_overhead_physics_frame() -> void:
 	if not rig.is_overhead():
@@ -138,7 +141,10 @@ func _on_health_component_defeat() -> void:
 	set_physics_process(false)
 
 func _on_rig_heavy_attack() -> void:
-	area_attack.deal_damage(10.0 + stats.get_damage_modifier())
+	area_attack.deal_damage(
+		10.0 + stats.get_damage_modifier(), 
+		stats.get_crit_chance()
+		)
 
 func exponential_decay(a: float, b: float, decay: float, delta: float) -> float:
 	return b + (a - b) * exp(-decay * delta)
