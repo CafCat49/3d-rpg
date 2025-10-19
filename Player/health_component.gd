@@ -17,7 +17,6 @@ var current_health: float:
 func update_max_health(max_hp_in: float) -> void:
 	max_health = max_hp_in
 	current_health = max_health
-	print("health changed ", max_health, current_health)
 	
 func take_damage(damage_in: float, is_critical: bool) -> void:
 	var damage = damage_in
@@ -32,3 +31,6 @@ func is_alive() -> bool:
 	if current_health == 0:
 		return false
 	return true
+
+func get_health_string() -> String:
+	return "%s / %s" % [int(current_health), int(max_health)]

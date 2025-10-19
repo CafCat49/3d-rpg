@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmrtrhg0x8qgx"]
+[gd_scene load_steps=9 format=3 uid="uid://bmrtrhg0x8qgx"]
 
 [ext_resource type="Texture2D" uid="uid://rrlv1llphnih" path="res://Assets/UIAssets/Unitframe/HealthBarUnder.png" id="1_71fg6"]
 [ext_resource type="Script" uid="uid://b7gxptlrvy4wp" path="res://UserInterface/user_interface.gd" id="1_cp462"]
@@ -6,6 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://c3pyabds5ixoe" path="res://Assets/UIAssets/Unitframe/MainBar.png" id="3_3o1tv"]
 [ext_resource type="FontFile" uid="uid://bclcmfmtpmu48" path="res://Assets/Fonts/LibreCaslonText/LibreCaslonText-Bold.ttf" id="3_mm0wo"]
 [ext_resource type="Texture2D" uid="uid://ca2vk2wi4kmwc" path="res://Assets/UIAssets/Unitframe/BlueBar.png" id="4_1yg0r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1yg0r"]
+font = ExtResource("3_mm0wo")
+font_size = 18
+font_color = Color(0.9607843, 0.7176471, 0.42352942, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cp462"]
 font = ExtResource("3_mm0wo")
@@ -56,6 +63,21 @@ grow_horizontal = 2
 grow_vertical = 2
 value = 100.0
 texture_progress = ExtResource("3_3o1tv")
+
+[node name="HealthLabel" type="Label" parent="MarginContainer/InfoBar/HealthBarUnder/HealthBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(95, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 104.0
+offset_top = -15.0
+offset_right = 222.0
+offset_bottom = -15.0
+grow_vertical = 2
+text = "999/1000"
+label_settings = SubResource("LabelSettings_1yg0r")
+vertical_alignment = 1
 
 [node name="XPBar" type="TextureProgressBar" parent="MarginContainer/InfoBar/HealthBarUnder"]
 unique_name_in_owner = true
