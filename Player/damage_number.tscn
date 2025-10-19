@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvgotslqu7qr4"]
+[gd_scene load_steps=6 format=3 uid="uid://dvgotslqu7qr4"]
 
 [ext_resource type="Script" uid="uid://dk1o42q5326dx" path="res://Player/damage_number.gd" id="1_ur3r0"]
+[ext_resource type="FontFile" uid="uid://bclcmfmtpmu48" path="res://Assets/Fonts/LibreCaslonText/LibreCaslonText-Bold.ttf" id="2_txons"]
 
 [sub_resource type="Animation" id="Animation_ur3r0"]
 length = 0.001
@@ -83,6 +84,7 @@ script = ExtResource("1_ur3r0")
 billboard = 1
 no_depth_test = true
 text = "25"
+font = ExtResource("2_txons")
 font_size = 64
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

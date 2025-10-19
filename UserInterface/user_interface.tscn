@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmrtrhg0x8qgx"]
+[gd_scene load_steps=6 format=3 uid="uid://bmrtrhg0x8qgx"]
 
 [ext_resource type="Texture2D" uid="uid://rrlv1llphnih" path="res://Assets/UIAssets/Unitframe/HealthBarUnder.png" id="1_71fg6"]
+[ext_resource type="Script" uid="uid://b7gxptlrvy4wp" path="res://UserInterface/user_interface.gd" id="1_cp462"]
 [ext_resource type="Texture2D" uid="uid://dajqiav378og6" path="res://Assets/UIAssets/Unitframe/HealthBarOver.png" id="2_v7due"]
+[ext_resource type="FontFile" uid="uid://bclcmfmtpmu48" path="res://Assets/Fonts/LibreCaslonText/LibreCaslonText-Bold.ttf" id="3_mm0wo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cp462"]
+font = ExtResource("3_mm0wo")
+font_size = 26
+font_color = Color(0.9607843, 0.7176471, 0.42352942, 1)
 
 [node name="UserInterface" type="Control"]
 layout_mode = 3
@@ -11,6 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_cp462")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -42,3 +50,16 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("2_v7due")
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/InfoBar/HealthBarOver"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(95, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_vertical = 2
+text = "999"
+label_settings = SubResource("LabelSettings_cp462")
+horizontal_alignment = 1
+vertical_alignment = 1
