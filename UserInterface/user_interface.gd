@@ -27,6 +27,10 @@ func update_health() -> void:
 
 func open_menu() -> void:
 	inventory.visible = true
+	get_tree().paused = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 func close_menu() -> void:
 	inventory.visible = false
+	get_tree().paused = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

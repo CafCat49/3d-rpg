@@ -21,6 +21,7 @@ font_size = 26
 font_color = Color(0.9607843, 0.7176471, 0.42352942, 1)
 
 [node name="UserInterface" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
