@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bt1qd0yq65262"]
+[gd_scene load_steps=13 format=3 uid="uid://bt1qd0yq65262"]
 
 [ext_resource type="Texture2D" uid="uid://brdmlboear456" path="res://Assets/UIAssets/Window/window_header.png" id="1_6hhab"]
+[ext_resource type="Script" uid="uid://2xwdskoqr0uk" path="res://UserInterface/inventory.gd" id="1_6ivh5"]
 [ext_resource type="FontFile" uid="uid://bclcmfmtpmu48" path="res://Assets/Fonts/LibreCaslonText/LibreCaslonText-Bold.ttf" id="2_hqat6"]
 [ext_resource type="StyleBox" uid="uid://dmwl2x2vbb420" path="res://UserInterface/ui_panel.tres" id="3_w4h00"]
+[ext_resource type="Texture2D" uid="uid://dr7t1yrg7ce6q" path="res://Assets/UIAssets/Icons/spell_slot_empty.png" id="4_h3yq5"]
+[ext_resource type="FontFile" uid="uid://ci3kglbul6qm8" path="res://Assets/Fonts/LibreCaslonText/LibreCaslonText-Regular.ttf" id="5_c11vl"]
 
 [sub_resource type="Gradient" id="Gradient_grkre"]
 offsets = PackedFloat32Array(0, 0.8, 0.9)
@@ -22,6 +25,16 @@ font_size = 26
 font_color = Color(0.9607843, 0.7176471, 0.42352942, 1)
 shadow_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_6ivh5"]
+font = ExtResource("5_c11vl")
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iclm4"]
+font = ExtResource("2_hqat6")
+font_size = 26
+font_color = Color(0.9607843, 0.7176471, 0.42352942, 1)
+shadow_color = Color(0, 0, 0, 1)
+
 [node name="Inventory" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -29,6 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6ivh5")
 
 [node name="BackgroundGradient" type="TextureRect" parent="."]
 layout_mode = 1
@@ -102,4 +116,120 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Level 1"
 label_settings = SubResource("LabelSettings_h3yq5")
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Attribute" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("4_h3yq5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute/VBoxContainer"]
+layout_mode = 2
+text = "Strength"
+label_settings = SubResource("LabelSettings_6ivh5")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="StrengthValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_iclm4")
+horizontal_alignment = 1
+
+[node name="Attribute2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("4_h3yq5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute2"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute2/VBoxContainer"]
+layout_mode = 2
+text = "Agility"
+label_settings = SubResource("LabelSettings_6ivh5")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="AgilityValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_iclm4")
+horizontal_alignment = 1
+
+[node name="Attribute3" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("4_h3yq5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute3"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute3/VBoxContainer"]
+layout_mode = 2
+text = "Speed"
+label_settings = SubResource("LabelSettings_6ivh5")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="SpeedValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute3/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_iclm4")
+horizontal_alignment = 1
+
+[node name="Attribute4" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("4_h3yq5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute4"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute4/VBoxContainer"]
+layout_mode = 2
+text = "Endurance"
+label_settings = SubResource("LabelSettings_6ivh5")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="EnduranceValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute4/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_iclm4")
 horizontal_alignment = 1
