@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bt1qd0yq65262"]
+[gd_scene load_steps=18 format=3 uid="uid://bt1qd0yq65262"]
 
 [ext_resource type="Texture2D" uid="uid://brdmlboear456" path="res://Assets/UIAssets/Window/window_header.png" id="1_6hhab"]
 [ext_resource type="Script" uid="uid://2xwdskoqr0uk" path="res://UserInterface/inventory.gd" id="1_6ivh5"]
@@ -6,6 +6,9 @@
 [ext_resource type="StyleBox" uid="uid://dmwl2x2vbb420" path="res://UserInterface/ui_panel.tres" id="3_w4h00"]
 [ext_resource type="Texture2D" uid="uid://dr7t1yrg7ce6q" path="res://Assets/UIAssets/Icons/spell_slot_empty.png" id="4_h3yq5"]
 [ext_resource type="FontFile" uid="uid://ci3kglbul6qm8" path="res://Assets/Fonts/LibreCaslonText/LibreCaslonText-Regular.ttf" id="5_c11vl"]
+[ext_resource type="Texture2D" uid="uid://cle432lcls3t6" path="res://Assets/UIAssets/Button Small/button_small.png" id="7_5spcf"]
+[ext_resource type="Texture2D" uid="uid://bdtmyt8pav268" path="res://Assets/UIAssets/Button Small/button_small_press.png" id="8_qnmx2"]
+[ext_resource type="Texture2D" uid="uid://bm3wfx7uw1q4e" path="res://Assets/UIAssets/Button Small/button_small_hover.png" id="9_2pqip"]
 
 [sub_resource type="Gradient" id="Gradient_grkre"]
 offsets = PackedFloat32Array(0, 0.8, 0.9)
@@ -34,6 +37,14 @@ font = ExtResource("2_hqat6")
 font_size = 26
 font_color = Color(0.9607843, 0.7176471, 0.42352942, 1)
 shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1aauh"]
+font = ExtResource("2_hqat6")
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5spcf"]
+font = ExtResource("2_hqat6")
+font_size = 26
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -233,3 +244,47 @@ layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_iclm4")
 horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer"]
+layout_mode = 2
+
+[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Attack Damage"
+label_settings = SubResource("LabelSettings_6ivh5")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="DamageValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+label_settings = SubResource("LabelSettings_1aauh")
+horizontal_alignment = 1
+
+[node name="ReturnButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 0
+texture_normal = ExtResource("7_5spcf")
+texture_pressed = ExtResource("8_qnmx2")
+texture_hover = ExtResource("9_2pqip")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ReturnButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Return"
+label_settings = SubResource("LabelSettings_5spcf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
