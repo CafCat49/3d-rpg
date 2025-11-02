@@ -20,12 +20,17 @@ func _ready() -> void:
 	health_component.update_max_health(max_health)
 	
 func _physics_process(_delta: float) -> void:
-	# var velocity_target := Vector3.ZERO
+	var velocity_target := Vector3.ZERO
 	navigation_agent_3d.target_position = player.global_position
-	orient_rig(navigation_agent_3d.get_next_path_position())
 	
 	if rig.is_idle():
 		check_for_attacks()
+		if not navigation_agent_3d.is_target_reached():
+			velocity_target = get_local_navigation_direction() * 5.0
+			orient_rig(navigation_agent_3d.get_next_path_position())
+			
+	navigation_agent_3d.velocity = velocity_target
+			
 		
 func check_for_attacks() -> void:
 	for collision_id in player_detector.get_collision_count():
@@ -47,3 +52,13 @@ func orient_rig(target_position: Vector3) -> void:
 	if rig.global_position.is_equal_approx(target_position): 
 		return
 	rig.look_at(target_position, Vector3.UP, true)
+
+func get_local_navigation_direction() -> Vector3:
+	var destination = navigation_agent_3d.get_next_path_position()
+	var local_destination = destination - global_position
+	return local_destination.normalized()
+
+
+func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
+	velocity = safe_velocity
+	move_and_slide()
